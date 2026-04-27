@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+    int a[10][10], m[10][10], n[10][10];
+    int av[10], f[10]={0}, s[10];
+    int p, r, i, j, k, c = 0;
+
+    scanf("%d%d", &p, &r);
+
+    for(i=0;i<p;i++)
+        for(j=0;j<r;j++)
+            scanf("%d",&a[i][j]);
+
+    for(i=0;i<p;i++)
+        for(j=0;j<r;j++)
+            scanf("%d",&m[i][j]);
+
+    for(i=0;i<r;i++)
+        scanf("%d",&av[i]);
+
+    for(i=0;i<p;i++)
+        for(j=0;j<r;j++)
+            n[i][j]=m[i][j]-a[i][j];
+
+    while(c<p)
+        for(i=0;i<p;i++)
+            if(!f[i])
+            {
+                for(j=0;j<r;j++)
+                    if(n[i][j]>av[j]) break;
+
+                if(j==r)
+                {
+                    for(k=0;k<r;k++)
+                        av[k]+=a[i][k];
+                    s[c++]=i;
+                    f[i]=1;
+                }
+            }
+
+    for(i=0;i<p;i++)
+        printf("P%d ",s[i]);
+}
